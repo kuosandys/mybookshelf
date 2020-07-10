@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background-color: #5e5656;
+  font-family: Courier;
+  font-weight: lighter; }
+
+header {
+  position: sticky;
+  padding: 3vw 3vw 0vw 3vw;
+  text-align: center;
+  font-size: 36px;
+  z-index: 1; }
+
+header > h1 {
+  color: #76b4bd; }
+
+#books {
+  position: relative;
+  top: 2vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center; }
+  #books .book {
+    margin: 2vw;
+    height: 300px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-image: url("images/book.png");
+    background-size: 200px 300px;
+    order: 0; }
+    #books .book p {
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      transform: rotate(-11deg) skew(-11deg, 0deg);
+      overflow: scroll;
+      text-overflow: ellipsis;
+      width: 150px; }
+    #books .book .title {
+      margin: 90px 11px 0px 41px;
+      padding: 2px;
+      color: #76b4bd;
+      font-size: 22px;
+      border-radius: 2px;
+      height: 80px; }
+    #books .book .author {
+      background-color: #6273a1;
+      color: #ffffff;
+      padding: 1px 5px 2px 5px;
+      margin: 0px 10px 0px 40px;
+      position: relative;
+      top: 70px; }
+    #books .book .pages {
+      position: relative;
+      top: 25px;
+      margin: 0px 10px 0px 40px;
+      color: #5e5656;
+      font-size: smaller; }
+    #books .book .read {
+      display: none; }
+    #books .book .remove-button {
+      display: none; }
+  #books .book:hover .read {
+    display: initial;
+    transform: rotate(270deg);
+    position: relative;
+    right: 85px;
+    bottom: 15px;
+    text-align: left;
+    color: #6273a1;
+    opacity: 0.6;
+    font-style: italic;
+    font-size: smaller; }
+  #books .book:hover .remove-button {
+    display: initial;
+    position: relative;
+    bottom: 180px;
+    left: 80px;
+    background-color: #5e5656;
+    color: #ffffff;
+    border: none;
+    border-radius: 22px;
+    font-size: 16px;
+    height: 22px;
+    width: 22px;
+    opacity: 0.3;
+    padding-bottom: 2px; }
+  #books .book:hover .remove-button:hover {
+    background-color: #C06C84;
+    opacity: 0.6; }
+  #books #add-book button {
+    transform: rotate(-10deg) skew(-16deg, 0deg);
+    position: relative;
+    top: 130px;
+    left: 15px;
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #76b4bd;
+    font-size: 18px;
+    color: #ffffff; }
+  #books #add-book button:hover {
+    background-color: #C06C84; }
+
+#form-div {
+  display: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: #5e5656;
+  opacity: 0.95;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  text-align: center; }
+
+#form {
+  display: none;
+  position: relative;
+  top: 180px;
+  background-color: #6273a1;
+  width: 400px;
+  height: 400px;
+  margin: auto; }
+  #form h1 {
+    width: 400px;
+    padding: 15px;
+    text-align: center;
+    background-color: #6273a1;
+    color: #ffffff;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 36px; }
+  #form #form-table {
+    text-align: left;
+    margin: 0px 10px 20px 40px;
+    width: 400px;
+    font-size: 18px;
+    font-weight: lighter;
+    font-style: italic; }
+    #form #form-table td {
+      padding: 10px; }
+  #form #radio {
+    display: flex;
+    flex-direction: column; }
+    #form #radio input {
+      margin: 0px 10px 0px 0; }
+  #form #submit-button {
+    border: none;
+    border-radius: 5px;
+    padding: 6px 10px 5px 10px;
+    background-color: #76b4bd;
+    font-size: 18px;
+    font-family: Courier;
+    color: #ffffff; }
+    #form #submit-button:hover {
+      background-color: #C06C84; }
+
+/*# sourceMappingURL=styles.css.map */

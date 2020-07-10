@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+</head>
+<body>
+    <header>
+        <h1>My Library</h1>
+    </header>
+    <div id="books">
+        <div id="add-book" class="book">
+            <button>Add New Book</button>
+        </div>
+    </div>
+    <div id="form-div">
+    <form id="form">
+        <h1>Add New Book</h1>
+        <table id="form-table">
+            <tr>
+                <td>
+                    <label class="label" for="title">Title</label>
+                </td>
+                <td>                
+                    <input type="text" id="new-title" placeholder="Enter Title" name="title" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="label" for="author">Author</label>
+                </td>
+                <td>                
+                    <input type="text" id="new-author" placeholder="Enter Author" name="author" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="label" for="pages">Pages</label>
+                </td>
+                <td>                
+                    <input type="number" id="new-pages" placeholder="0" name="pages" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td id="radio">                
+                    <label for="read">
+                        <input type="radio" id="read" name="read" value="read">  
+                        read it
+                    </label>
+                    <label for="not-read">
+                        <input type="radio" id="not-read" name="read" value="not read">
+                        yet to read
+                    </label>
+                    <label for="read">
+                        <input type="radio" id="reading" name="read" value="reading">
+                        currently reading
+                    </label>                
+                </td>
+            </tr>
+        </table>
+        <button type="button" id="submit-button">Submit</button>
+        </form>
+    </div> 
+    
+</body>
+    <script src="library.js"></script>
+</html>
