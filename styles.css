@@ -76,7 +76,8 @@ header > h1 {
     color: #6273a1;
     opacity: 0.6;
     font-style: italic;
-    font-size: smaller; }
+    font-size: smaller;
+    cursor: pointer; }
   #books .book:hover .remove-button {
     display: initial;
     position: relative;
@@ -93,7 +94,8 @@ header > h1 {
     padding-bottom: 2px; }
   #books .book:hover .remove-button:hover {
     background-color: #C06C84;
-    opacity: 0.6; }
+    opacity: 0.6;
+    cursor: pointer; }
   #books #add-book button {
     transform: rotate(-10deg) skew(-16deg, 0deg);
     position: relative;
@@ -106,7 +108,8 @@ header > h1 {
     font-size: 18px;
     color: #ffffff; }
   #books #add-book button:hover {
-    background-color: #C06C84; }
+    background-color: #C06C84;
+    cursor: pointer; }
 
 #form-div {
   display: none;

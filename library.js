@@ -1,13 +1,6 @@
 // Array for storing books
 let myLibrary = [];
 
-// Tests
-
-addBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 123, "yet to read");
-addBookToLibrary("The Lord of the Rings", "J. R. R. Tolkien", 456, "read");
-addBookToLibrary("Harry Potter and the Order of the Phoenix (and the Half-Blood Prince)", "JKRJKRJ", 789, "currently reading");
-addBookToLibrary("HasdfP", "JKR", 789, "yet to read");
-
 renderLibrary();
 
 // Book object storing each book's title, author, pages, read/not-read
@@ -69,6 +62,27 @@ function removeBook(e) {
     renderLibrary();
 };
 
+// Change reading status
+function changeReadingStatus(e) {
+    let bookStatus = e.target.textContent;
+    let idx = e.target.parentNode.id;
+    let selectedBook = myLibrary.filter((book) => book.index == idx);
+    switch (bookStatus) {
+        case "yet to read":
+            e.target.textContent = "currently reading";
+            selectedBook.read = "currently reading";
+            break;
+        case "currently reading":
+            e.target.textContent = "read";
+            selectedBook.read = "read";
+            break;
+        case "read":
+            e.target.textContent = "yet to read";
+            selectedBook.read = "yet to read";
+            break;
+    }
+}
+
 
 // Displays the entire library on the page
 function renderLibrary() {
@@ -83,6 +97,14 @@ function renderLibrary() {
     removeButtons.forEach((button) => {
         button.addEventListener("click", (event) => {
             removeBook(event);
+        });
+    });
+
+    // Add eventlistner to toggle reading status
+    let readingButtons = Array.from(document.getElementsByClassName("read"));
+    readingButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            changeReadingStatus(event);
         });
     });
 };
