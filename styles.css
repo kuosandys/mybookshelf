@@ -18,14 +18,14 @@ header {
 header > h1 {
   color: #76b4bd; }
 
-#books {
+#shelf {
   position: relative;
   top: 2vw;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: center; }
-  #books .book {
+  #shelf .book, #shelf #default-book {
     margin: 2vw;
     height: 300px;
     width: 200px;
@@ -36,37 +36,37 @@ header > h1 {
     background-image: url("images/book.png");
     background-size: 200px 300px;
     order: 0; }
-    #books .book p {
+    #shelf .book p, #shelf #default-book p {
       font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
       transform: rotate(-11deg) skew(-11deg, 0deg);
       overflow: scroll;
       text-overflow: ellipsis;
       width: 150px; }
-    #books .book .title {
+    #shelf .book .title, #shelf #default-book .title {
       margin: 90px 11px 0px 41px;
       padding: 2px;
       color: #76b4bd;
       font-size: 22px;
       border-radius: 2px;
       height: 80px; }
-    #books .book .author {
+    #shelf .book .author, #shelf #default-book .author {
       background-color: #6273a1;
       color: #ffffff;
       padding: 1px 5px 2px 5px;
       margin: 0px 10px 0px 40px;
       position: relative;
       top: 70px; }
-    #books .book .pages {
+    #shelf .book .pages, #shelf #default-book .pages {
       position: relative;
       top: 25px;
       margin: 0px 10px 0px 40px;
       color: #5e5656;
       font-size: smaller; }
-    #books .book .read {
+    #shelf .book .read, #shelf #default-book .read {
       display: none; }
-    #books .book .remove-button {
+    #shelf .book .remove-button, #shelf #default-book .remove-button {
       display: none; }
-  #books .book:hover .read {
+  #shelf .book:hover .read, #shelf #default-book:hover .read {
     display: initial;
     transform: rotate(270deg);
     position: relative;
@@ -78,7 +78,7 @@ header > h1 {
     font-style: italic;
     font-size: smaller;
     cursor: pointer; }
-  #books .book:hover .remove-button {
+  #shelf .book:hover .remove-button, #shelf #default-book:hover .remove-button {
     display: initial;
     position: relative;
     bottom: 180px;
@@ -92,11 +92,11 @@ header > h1 {
     width: 22px;
     opacity: 0.3;
     padding-bottom: 2px; }
-  #books .book:hover .remove-button:hover {
+  #shelf .book:hover .remove-button:hover, #shelf #default-book:hover .remove-button:hover {
     background-color: #C06C84;
     opacity: 0.6;
     cursor: pointer; }
-  #books #add-book button {
+  #shelf #add-new-book {
     transform: rotate(-10deg) skew(-16deg, 0deg);
     position: relative;
     top: 130px;
@@ -107,7 +107,7 @@ header > h1 {
     background-color: #76b4bd;
     font-size: 18px;
     color: #ffffff; }
-  #books #add-book button:hover {
+  #shelf #add-new-book:hover {
     background-color: #C06C84;
     cursor: pointer; }
 
@@ -123,7 +123,6 @@ header > h1 {
   text-align: center; }
 
 #form {
-  display: none;
   position: relative;
   top: 180px;
   background-color: #6273a1;
@@ -147,12 +146,12 @@ header > h1 {
     font-style: italic; }
     #form #form-table td {
       padding: 10px; }
-  #form #radio {
+  #form #read-radio {
     display: flex;
     flex-direction: column; }
-    #form #radio input {
+    #form #read-radio input {
       margin: 0px 10px 0px 0; }
-  #form #submit-button {
+  #form #submit-form {
     border: none;
     border-radius: 5px;
     padding: 6px 10px 5px 10px;
@@ -160,7 +159,13 @@ header > h1 {
     font-size: 18px;
     font-family: Courier;
     color: #ffffff; }
-    #form #submit-button:hover {
+    #form #submit-form:hover {
       background-color: #C06C84; }
+
+.hide-form {
+  display: none; }
+
+.show-form {
+  display: initial; }
 
 /*# sourceMappingURL=styles.css.map */
