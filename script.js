@@ -87,30 +87,29 @@ Book.prototype.render = function() {
 Book.prototype.addToMyShelf = function() {
     myShelf.push(this);
     this.index = myShelf.indexOf(this);
-    localStorage.setItem(this.index, JSON.stringify(this));
 };
 
 //delete Book from myShelf
 Book.prototype.removeFromMyShelf = function() {
     myShelf = myShelf.filter(book => book !== this);
-    localStorage.removeItem(this.index);
 };
 
 //change Book's reading status
 Book.prototype.changeReadStatus = function() {
     this.readStatus = !this.readStatus;
-    localStorage.setItem(this.index, JSON.stringify(this));
 };
 
 //change Book's reading status
 function changeBookReadStatus(book) {
     book.changeReadStatus();
+    updateLocalStorage();
     displayShelf();
 }
 
 //remove Book
 function removeBookFromShelf(book) {
     book.removeFromMyShelf();
+    updateLocalStorage();
     displayShelf();
 }
 
@@ -118,6 +117,7 @@ function removeBookFromShelf(book) {
 function addBookToShelf() {
     let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, newReadStatus.checked);
     newBook.addToMyShelf();
+    updateLocalStorage();
     displayShelf();
 }
 
@@ -141,22 +141,23 @@ function toggleFormDisplay() {
     form.classList.toggle("show-form");
 }
 
-function populateShelf() {
-    for (let i = 0; i < localStorage.length; i++) {
+function updateLocalStorage() {
+    window.localStorage.clear();
+    window.localStorage.setItem("myShelf", JSON.stringify(myShelf));
+}
 
-        let newBook = Object.assign(new Book(), JSON.parse( localStorage.getItem( localStorage.key(i) ) ) );
-        newBook.index = i;
+function loadLocalStorage() {
+    let tempShelf = Array.from( JSON.parse( window.localStorage.getItem("myShelf") ) );
+    tempShelf.forEach( tempBook => {
+        let newBook = Object.assign(new Book(), tempBook);
         myShelf.push(newBook);
-        localStorage.removeItem( localStorage.key(i) );
-        localStorage.setItem(i, JSON.stringify(newBook));
-
-    };
+    });
 }
 
 //initialize the page
 function startUp() {
-    if (localStorage) {
-        populateShelf();
+    if (localStorage.length != 0) {
+        loadLocalStorage();
         displayShelf();
     };
 
@@ -171,12 +172,16 @@ function startUp() {
         } else {
             addBookToShelf();
             toggleFormDisplay();
+            form.reset();
         };
 
     });
 
     //cancel form button: to close form and clear form
-    cancelFormButton.addEventListener("click", () => toggleFormDisplay() );
+    cancelFormButton.addEventListener("click", () => {
+        toggleFormDisplay()
+        form.reset();
+    });
 }
 
 startUp();
