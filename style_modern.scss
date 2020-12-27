@@ -1,0 +1,353 @@
+$primary-color: #e9900a;
+$light-color :#fff;
+$grey-color: #efefef;
+
+$text-light: #666666;
+$text-dark: #444444;
+$text-black: #222222;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    font-size: 0;
+}
+
+button {
+    border: none;
+}
+
+h1 {
+    color: $text-dark;
+}
+
+p {
+    color: $text-light;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    padding: 15px;
+    background-color: lighten($primary-color, 20%);
+
+    h1 {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: $text-black;
+    }
+
+}
+
+
+#shelf {
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    padding-top: 10px;
+}
+
+.book {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: baseline;
+    position: relative;
+    height: 240px;
+    width: 180px;
+    border: 1px solid $grey-color;
+    background-color: $light-color;
+    margin: 0 10px 20px;
+    box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+
+    button {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background-color: transparent;
+        opacity: 50%;
+
+        &:hover {
+            opacity: 80%;
+        }
+
+        img {
+            padding: 0 2px 2px 0;
+            height: 30px;
+            width: 30px;
+        }
+    }
+
+    &:hover, &:active, &:focus {
+        box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+        button {
+            display: initial;
+            cursor: pointer;
+        }
+    }
+}
+
+.book-info {
+    position: absolute;
+    width: 100%;
+    height: 85%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 10px 10px;
+
+    p {
+        text-align: center;
+        overflow: hidden;
+        word-wrap: break-word;
+        line-height: 1.2;
+        width: 100%;
+        font-weight: 700;
+
+        &:hover, &:active, &:focus {
+            overflow: scroll;
+        }
+    }
+
+    .title {
+        font-size: 24px;
+        height: auto;
+        max-height: 58%;
+    }
+    
+    .author {
+        font-size: 16px;
+        height: auto;
+        max-height: 38%;
+    
+    }
+
+}
+
+.book-details {
+    position: absolute;
+    width: 160px;
+    height:15%;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid $grey-color;
+    padding: 10px 0;
+    margin: 0 10px;
+
+    p {
+        font-size: 12px;
+        color: #666666;
+    }
+
+    .readStatus {
+        font-style: italic;
+        color: $primary-color;
+
+        &:hover, &:focus, &:active {
+            cursor: pointer;
+        }
+    }
+}
+
+#button-div {
+    width: 100%;
+    padding: 0 10px 10px;
+    display: inline-flex;
+    justify-content: center;
+
+    #add-new-book {
+        height: 50px;
+        width: 50px;
+        padding: 0;
+        font-size: 30px;
+        font-weight: 700;
+        color: $light-color;
+        background-color: $primary-color;
+        padding: 5px;
+        border-radius: 50%;
+        border: 1px solid $primary-color;
+        z-index: 1;
+
+        &:hover, &:focus, &:active {
+            background-color: lighten($primary-color, 20%);
+            border: 1px solid lighten($primary-color, 20%);
+        }
+    }
+}
+
+form {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    #form-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        background: lighten($primary-color, 20%);
+        box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.2);
+
+        h1 {
+            font-size: 30px;
+            text-align: center;
+            margin: 0 0 10px;
+            color: $text-black;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #read-checkbox {
+            flex-direction: row;
+        }
+
+        label {
+            margin: 0 0 5px;
+        }
+
+        input {
+            margin: 0 0 10px;
+            padding: 2px;
+            font-style: italic;
+            border: 1.5px solid $primary-color;
+            border-radius: 3px;
+            
+            &:hover, &:active, &:focus {
+                box-shadow: 0 0 5px 2px $light-color;        
+            }
+
+            &:focus {
+                font-style: normal;
+            }
+
+        }
+
+        #read-checkbox {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            vertical-align: center;
+            line-height: 30px;
+            height: 30px;
+            margin: 0 0 10px 0;
+
+            label {
+                margin: 0 0 0 10px;
+            }
+
+            input {
+                border: none;
+                border: 1px solid $primary-color;
+                margin: 0;
+
+
+                &:hover, &:active, &:focus {
+                    box-shadow: 0 0 5px 2px $light-color;            
+                }
+            }
+        }
+
+        #submit-form, #cancel-form {
+            width: auto;
+            padding: 5px 15px;
+            margin: 0 auto 10px;
+            font-style: normal;
+            font-weight: 700;
+            border: none;
+            border: 1px solid $primary-color;
+            background-color: $light-color;
+            color: $text-dark;
+
+            &:hover, &:active, &:focus {
+                box-shadow: 0 0 5px 2px $light-color;   
+                background-color: $primary-color;
+                color: $light-color;
+            }
+        }
+    }
+}
+
+.hide-form {
+    display: none;
+}
+
+.show-form {
+    display: initial;
+    backdrop-filter: blur(5px);
+}
+
+@media screen and (max-width: 999px) {
+    body {
+        padding-bottom: 55px;
+    }
+
+    #add-new-book {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    #form-content {
+        height: auto;
+        width: 80%;
+        max-width: 450px;
+        padding: 30px 10px 10px;
+        font-size: 16px;
+
+        input {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #button-div {
+        height: 100px;
+        padding: 20px;
+        align-items: center;
+        z-index: 0;
+    }
+
+    #form-content {
+        height: 80%;
+        width: 35%;
+        padding: 10px 30px;
+        font-size: 18px;
+
+        input {
+            font-size: 18px;
+        }
+    }
+}

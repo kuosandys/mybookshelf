@@ -2,57 +2,44 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bookshelf</title>
 </head>
 <body>
     <header>
-        <h1>My Bookshelf</h1>
+        <h1>My Bookshelf.</h1>
     </header>
-
-    <div id="shelf">
-        <div id="default-book">
-            <button id="add-new-book">Add New Book</button>
-        </div>
+    <div id="button-div">
+        <button id="add-new-book">+</button>
     </div>
-
+    <div id="shelf">
+    </div>
     <form id="form" class="hide-form">
-        <h1>Add New Book</h1>
-        <table id="form-table">
-            <tr>
-                <td>
-                    <label class="label" for="title">Title</label>
-                </td>
-                <td>                
-                    <input type="text" id="new-title" name="title" placeholder="The Solitaire Mystery" onfocus="this.placeholder=''" autocomplete = "off" required/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="label" for="author">Author</label>
-                </td>
-                <td>                
-                    <input type="text" id="new-author" name="author" placeholder="Jostein Gaarder" onfocus="this.placeholder=''" autocomplete = "off" required/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label class="label" for="pages">Pages</label>
-                </td>
-                <td>                
-                    <input type="number" id="new-pages" name="pages" placeholder="351" onfocus="this.placeholder=''" name="author" required/>
-                </td>
-            </tr>
-            <tr>
-                <td>Have you read it?</td>
-                <td>                
-                    <input type="checkbox" id="read-status">
-                </td>
-            </tr>
-        </table>
-        <input type="button" id="submit-form" value="Submit"/>
-        <input type="button" id="cancel-form" value="Cancel"/>
+        <div id="form-content">
+            <h1>Add New Book</h1>
+            <div>
+                <label class="label" for="title">Title</label>              
+                <input type="text" id="new-title" name="title" placeholder="The Solitaire Mystery" onfocus="this.placeholder=''" autocomplete = "off" required/>    
+            </div>
+            <div>
+                <label class="label" for="author">Author</label>           
+                <input type="text" id="new-author" name="author" placeholder="Jostein Gaarder" onfocus="this.placeholder=''" autocomplete = "off" required/>
+            </div>
+            <div>
+                <label class="label" for="pages">Pages</label>
+                <input type="number" id="new-pages" name="pages" max="9999" placeholder="351" onfocus="this.placeholder=''" required/>    
+            </div>
+            <div id='read-checkbox'>
+                <input type="checkbox" id="read-status"/>
+                <label class="label" for="read-status">I've read this book</label>
+            </div>
+            <div>
+                <input type="button" id="submit-form" value="Submit"/>
+                <input type="button" id="cancel-form" value="Cancel"/>
+            </div>
+        </div>
     </form>
     
 </body>
