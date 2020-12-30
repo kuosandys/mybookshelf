@@ -1,5 +1,5 @@
 # *My Bookshelf.* Virtual Bookshelf
-*My Bookshelf.* is a virtual bookshelf web-app that allows users to store a digital version of their bookshelves and can also be utilized as a reading list. This project was built to demonstrate understanding and use of object constructors and localStorage.
+*My Bookshelf.* is a virtual bookshelf web-app that allows users to store a digital version of their bookshelves and can also be utilized as a reading list. This project was built to demonstrate understanding and use of JavaScript classes for object creation and localStorage methods.
 
 :star: [Live Demo](https://kuosandys.github.io/virtual-bookshelf/) :star:
 
