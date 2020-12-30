@@ -8,6 +8,8 @@ html {
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-appearance: none;
+  border-radius: 0;
   line-height: 1.6;
   font-size: 0;
 }
@@ -147,19 +149,19 @@ header h1 {
 
 #button-div {
   width: 100%;
-  padding: 0 10px 10px;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 #button-div #add-new-book {
   height: 50px;
   width: 50px;
   padding: 0;
   font-size: 30px;
+  line-height: 1;
   font-weight: 700;
   color: #fff;
   background-color: #e9900a;
-  padding: 5px;
   border-radius: 50%;
   border: 1px solid #e9900a;
   z-index: 1;
@@ -208,15 +210,11 @@ form #form-content label {
 form #form-content input {
   margin: 0 0 10px;
   padding: 2px;
-  font-style: italic;
   border: 1.5px solid #e9900a;
   border-radius: 3px;
 }
 form #form-content input:hover, form #form-content input:active, form #form-content input:focus {
   box-shadow: 0 0 5px 2px #fff;
-}
-form #form-content input:focus {
-  font-style: normal;
 }
 form #form-content #read-checkbox {
   display: flex;
