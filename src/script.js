@@ -1,3 +1,6 @@
+import 'normalize.css'
+import './style_modern.scss'
+
 //DOM selection: main
 const shelf = document.getElementById("shelf");
 const form = document.getElementById("form");
@@ -11,7 +14,6 @@ const newReadStatus = document.getElementById("read-status");
 const submitFormButton = document.getElementById("submit-form");
 const cancelFormButton = document.getElementById("cancel-form");
 
-//array for storing books
 let myShelf = [];
 
 //Book class
@@ -66,7 +68,7 @@ class Book{
     
         //add button to remove book
         let removeButton = document.createElement("button");
-        removeButton.innerHTML = "<img src=\"images/trash_can.png\">";
+        removeButton.innerHTML = "<img src=\"../images/trash_can.png\">";
         removeButton.classList.add("remove-button");
         removeButton.addEventListener("click", () => removeBookFromShelf(this) );
         elementDiv.appendChild(removeButton);
@@ -78,27 +80,31 @@ class Book{
         return elementDiv;
     }
 
-    addToMyShelf = () => {
+    add = () => {
         myShelf.push(this);
         this.index = myShelf.indexOf(this);
     }
 
-    removeFromMyShelf = () => {
+    remove = () => {
         myShelf = myShelf.filter(book => book !== this);
     }
 
-    changeReadStatus = () => {
+    changeStatus = () => {
         this.readStatus = !this.readStatus;
-        updateLocalStorage();
-        displayShelf();
     }
 
 };
 
 //initialize the page
 function startUp() {
-    if (localStorage.length != 0) {
-        loadLocalStorage();
+    if (localStorage.getItem("myShelf")) {
+
+        let tempShelf = Array.from( JSON.parse( window.localStorage.getItem("myShelf") ) );
+        tempShelf.forEach( tempBook => {
+            let newBook = Object.assign(new Book(), tempBook);
+            myShelf.push(newBook);
+        });
+        
         displayShelf();
     };
 
@@ -134,20 +140,20 @@ function displayShelf() {
 }
 
 function changeBookReadStatus(book) {
-    book.changeReadStatus();
+    book.changeStatus();
     updateLocalStorage();
     displayShelf();
 }
 
 function removeBookFromShelf(book) {
-    book.removeFromMyShelf();
+    book.remove();
     updateLocalStorage();
     displayShelf();
 }
 
 function addBookToShelf() {
     let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, newReadStatus.checked);
-    newBook.addToMyShelf();
+    newBook.add();
     updateLocalStorage();
     displayShelf();
 }
@@ -157,18 +163,8 @@ function toggleFormDisplay() {
     form.classList.toggle("show-form");
 }
 
-//localStorage
 function updateLocalStorage() {
-    window.localStorage.clear();
-    window.localStorage.setItem("myShelf", JSON.stringify(myShelf));
-}
-
-function loadLocalStorage() {
-    let tempShelf = Array.from( JSON.parse( window.localStorage.getItem("myShelf") ) );
-    tempShelf.forEach( tempBook => {
-        let newBook = Object.assign(new Book(), tempBook);
-        myShelf.push(newBook);
-    });
+    localStorage.setItem("myShelf", JSON.stringify(myShelf));
 }
 
 startUp();

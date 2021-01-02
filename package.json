@@ -1,0 +1,39 @@
+{
+  "name": "myLibrary",
+  "version": "1.0.0",
+  "description": "*myBookshelf.* is a virtual bookshelf web-app that allows users to store a digital version of their bookshelves and can also be used as a reading list. This project was built to demonstrate understanding and use of JavaScript classes for object creation and localStorage methods.",
+  "main": "./src/script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --progress --mode=production",
+    "watch": "webpack --progress --watch",
+    "serve": "live-server",
+    "serve:watch" : "npm run serve & npm run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuosandys/virtual-bookshelf.git"
+  },
+  "author": "Sandy S Kuo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kuosandys/virtual-bookshelf/issues"
+  },
+  "homepage": "https://github.com/kuosandys/virtual-bookshelf#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "live-server": "^1.2.1",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  },
+  "dependencies": {
+    "css-loader": "^5.0.1",
+    "normalize.css": "^8.0.1",
+    "style-loader": "^2.0.0"
+  }
+}

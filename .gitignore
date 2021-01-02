@@ -3,3 +3,5 @@ styles.css.map
 
 .DS_Store
 .vscode/
+node_modules/
+webpack.config.js

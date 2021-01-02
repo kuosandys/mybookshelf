@@ -1,25 +1,29 @@
 $primary-color: #e9900a;
 $light-color :#fff;
 $grey-color: #efefef;
-
 $text-light: #666666;
 $text-dark: #444444;
 $text-black: #222222;
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 html {
-    font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    font-family: 'Nunito', sans-serif;
     border-radius: 0;
     line-height: 1.6;
-    font-size: 0;
+
+    :focus, :active{
+       outline: none;
+    }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 button {
@@ -48,7 +52,7 @@ header {
     h1 {
         text-align: center;
         font-size: 30px;
-        font-weight: 700;
+        font-weight: 400;
         line-height: 1.2;
         color: $text-black;
     }
@@ -79,29 +83,10 @@ header {
 
     button {
         display: none;
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        background-color: transparent;
-        opacity: 50%;
-
-        &:hover {
-            opacity: 80%;
-        }
-
-        img {
-            padding: 0 2px 2px 0;
-            height: 30px;
-            width: 30px;
-        }
     }
 
     &:hover, &:active, &:focus {
         box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
-        button {
-            display: initial;
-            cursor: pointer;
-        }
     }
 }
 
@@ -122,7 +107,7 @@ header {
         word-wrap: break-word;
         line-height: 1.2;
         width: 100%;
-        font-weight: 700;
+        font-weight: 400;
 
         &:hover, &:active, &:focus {
             overflow: scroll;
@@ -171,29 +156,19 @@ header {
     }
 }
 
+
 #button-div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     #add-new-book {
-        height: 50px;
-        width: 50px;
-        padding: 0;
         font-size: 30px;
-        line-height: 1;
         font-weight: 700;
         color: $light-color;
-        background-color: $primary-color;
-        border-radius: 50%;
-        border: 1px solid $primary-color;
-        z-index: 1;
+        background-color: transparent;
+    }
 
-        &:hover, &:focus, &:active {
-            background-color: lighten($primary-color, 20%);
-            border: 1px solid lighten($primary-color, 20%);
-        }
+    &:hover, &:focus, &:active {
+        background-color: lighten($primary-color, 20%);
+        border: 1px solid lighten($primary-color, 20%);
     }
 }
 
@@ -223,6 +198,7 @@ form {
             font-size: 30px;
             text-align: center;
             margin: 0 0 10px;
+            font-weight: 400;
             color: $text-black;
         }
 
@@ -309,14 +285,26 @@ form {
         padding-bottom: 55px;
     }
 
-    #add-new-book {
+    #button-div {
         position: fixed;
         bottom: 10px;
         right: 10px;
+        display: flex;
+        margin: 10px auto 0;
+        height: 50px;
+        width: 50px;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        background-color: $primary-color;
+        border-radius: 50%;
+        border: 1px solid $primary-color;
     }
 
     #form-content {
         height: auto;
+        min-height: 75%;
         width: 80%;
         max-width: 450px;
         padding: 30px 10px 10px;
@@ -330,14 +318,22 @@ form {
 
 @media screen and (min-width: 1000px) {
     #button-div {
-        height: 100px;
-        padding: 20px;
+        display: flex;
+        margin: 10px auto 5px;
+        height: 50px;
+        width: 50px;
+        padding: 0;
         align-items: center;
-        z-index: 0;
+        justify-content: center;
+        z-index: 1;
+        background-color: $primary-color;
+        border-radius: 50%;
+        border: 1px solid $primary-color;
     }
 
     #form-content {
-        height: 80%;
+        height: auto;
+        min-height: 75%;
         width: 35%;
         padding: 10px 30px;
         font-size: 18px;
@@ -346,4 +342,58 @@ form {
             font-size: 18px;
         }
     }
+}
+
+@media (hover:hover) {
+    .book {
+        &:hover, &:active, &:focus {
+            button {
+                display: initial;
+                position: absolute;
+                background-color: transparent;
+                opacity: 50%;
+                right: 10px;
+                top: 10px;
+            }
+
+            img {
+                padding: 0 2px 2px 0;
+                height: 30px;
+                width: 30px;
+            }
+        }
+
+        button {
+            &:hover {
+                opacity: 80%;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media (hover:none) {
+    .book {
+        button {
+            display: initial;
+            opacity: 50%;
+            position: absolute;
+            background-color: transparent;
+            right: 2px;
+            top: 2px;
+        }
+
+        img {
+            padding: 0 2px 2px 0;
+            height: 30px;
+            width: 30px;
+        }
+
+        &:focus, &:active, &:hover{
+            button {
+                opacity: 80%;
+            }
+        }
+    }
+
 }
