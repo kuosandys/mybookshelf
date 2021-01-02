@@ -1,0 +1,338 @@
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  font-family: "Nunito", sans-serif;
+  border-radius: 0;
+  line-height: 1.6;
+  font-size: 0;
+}
+html :focus, html :active {
+  outline: none;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+button {
+  border: none;
+}
+
+h1 {
+  color: #444444;
+}
+
+p {
+  color: #666666;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  padding: 15px;
+  background-color: #f8bc61;
+}
+header h1 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #222222;
+}
+
+#shelf {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+  padding-top: 10px;
+}
+
+.book {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: baseline;
+  position: relative;
+  height: 240px;
+  width: 180px;
+  border: 1px solid #efefef;
+  background-color: #fff;
+  margin: 0 10px 20px;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+}
+.book button {
+  display: none;
+}
+.book:hover, .book:active, .book:focus {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.book-info {
+  position: absolute;
+  width: 100%;
+  height: 85%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 10px 10px;
+}
+.book-info p {
+  text-align: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  line-height: 1.2;
+  width: 100%;
+  font-weight: 400;
+}
+.book-info p:hover, .book-info p:active, .book-info p:focus {
+  overflow: scroll;
+}
+.book-info .title {
+  font-size: 24px;
+  height: auto;
+  max-height: 58%;
+}
+.book-info .author {
+  font-size: 16px;
+  height: auto;
+  max-height: 38%;
+}
+
+.book-details {
+  position: absolute;
+  width: 160px;
+  height: 15%;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #efefef;
+  padding: 10px 0;
+  margin: 0 10px;
+}
+.book-details p {
+  font-size: 12px;
+  color: #666666;
+}
+.book-details .readStatus {
+  font-style: italic;
+  color: #e9900a;
+}
+.book-details .readStatus:hover, .book-details .readStatus:focus, .book-details .readStatus:active {
+  cursor: pointer;
+}
+
+#button-div #add-new-book {
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  background-color: transparent;
+}
+#button-div:hover, #button-div:focus, #button-div:active {
+  background-color: #f8bc61;
+  border: 1px solid #f8bc61;
+}
+
+form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+form #form-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #f8bc61;
+  box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.2);
+}
+form #form-content h1 {
+  font-size: 30px;
+  text-align: center;
+  margin: 0 0 10px;
+  color: #222222;
+}
+form #form-content div {
+  display: flex;
+  flex-direction: column;
+}
+form #form-content #read-checkbox {
+  flex-direction: row;
+}
+form #form-content label {
+  margin: 0 0 5px;
+}
+form #form-content input {
+  margin: 0 0 10px;
+  padding: 2px;
+  border: 1.5px solid #e9900a;
+  border-radius: 3px;
+}
+form #form-content input:hover, form #form-content input:active, form #form-content input:focus {
+  box-shadow: 0 0 5px 2px #fff;
+}
+form #form-content #read-checkbox {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  vertical-align: center;
+  line-height: 30px;
+  height: 30px;
+  margin: 0 0 10px 0;
+}
+form #form-content #read-checkbox label {
+  margin: 0 0 0 10px;
+}
+form #form-content #read-checkbox input {
+  border: none;
+  border: 1px solid #e9900a;
+  margin: 0;
+}
+form #form-content #read-checkbox input:hover, form #form-content #read-checkbox input:active, form #form-content #read-checkbox input:focus {
+  box-shadow: 0 0 5px 2px #fff;
+}
+form #form-content #submit-form, form #form-content #cancel-form {
+  width: auto;
+  padding: 5px 15px;
+  margin: 0 auto 10px;
+  font-style: normal;
+  font-weight: 700;
+  border: none;
+  border: 1px solid #e9900a;
+  background-color: #fff;
+  color: #444444;
+}
+form #form-content #submit-form:hover, form #form-content #submit-form:active, form #form-content #submit-form:focus, form #form-content #cancel-form:hover, form #form-content #cancel-form:active, form #form-content #cancel-form:focus {
+  box-shadow: 0 0 5px 2px #fff;
+  background-color: #e9900a;
+  color: #fff;
+}
+
+.hide-form {
+  display: none;
+}
+
+.show-form {
+  display: initial;
+  backdrop-filter: blur(5px);
+}
+
+@media screen and (max-width: 999px) {
+  body {
+    padding-bottom: 55px;
+  }
+
+  #button-div {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    margin: 10px auto 0;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    background-color: #e9900a;
+    border-radius: 50%;
+    border: 1px solid #e9900a;
+  }
+
+  #form-content {
+    height: auto;
+    min-height: 75%;
+    width: 80%;
+    max-width: 450px;
+    padding: 30px 10px 10px;
+    font-size: 16px;
+  }
+  #form-content input {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #button-div {
+    display: flex;
+    margin: 10px auto 5px;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    background-color: #e9900a;
+    border-radius: 50%;
+    border: 1px solid #e9900a;
+  }
+
+  #form-content {
+    height: auto;
+    min-height: 75%;
+    width: 35%;
+    padding: 10px 30px;
+    font-size: 18px;
+  }
+  #form-content input {
+    font-size: 18px;
+  }
+}
+@media (hover: hover) {
+  .book:hover button, .book:active button, .book:focus button {
+    display: initial;
+    position: absolute;
+    background-color: transparent;
+    opacity: 50%;
+    right: 10px;
+    top: 10px;
+  }
+  .book:hover img, .book:active img, .book:focus img {
+    padding: 0 2px 2px 0;
+    height: 30px;
+    width: 30px;
+  }
+  .book button:hover {
+    opacity: 80%;
+    cursor: pointer;
+  }
+}
+@media (hover: none) {
+  .book button {
+    display: initial;
+    opacity: 50%;
+    position: absolute;
+    background-color: transparent;
+    right: 2px;
+    top: 2px;
+  }
+  .book img {
+    padding: 0 2px 2px 0;
+    height: 30px;
+    width: 30px;
+  }
+  .book:focus button, .book:active button, .book:hover button {
+    opacity: 80%;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
