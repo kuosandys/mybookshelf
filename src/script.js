@@ -68,7 +68,7 @@ class Book{
     
         //add button to remove book
         let removeButton = document.createElement("button");
-        removeButton.innerHTML = "<img src=\"../images/trash_can.png\">";
+        removeButton.innerHTML = "<img src=\"./images/trash_can.png\">";
         removeButton.classList.add("remove-button");
         removeButton.addEventListener("click", () => removeBookFromShelf(this) );
         elementDiv.appendChild(removeButton);
