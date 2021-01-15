@@ -1,5 +1,5 @@
-import 'normalize.css'
-import './style_modern.scss'
+import "normalize.css";
+import "./style_modern.scss";
 
 //DOM selection: main
 const shelf = document.getElementById("shelf");
@@ -13,158 +13,173 @@ const newPages = document.getElementById("new-pages");
 const newReadStatus = document.getElementById("read-status");
 const submitFormButton = document.getElementById("submit-form");
 const cancelFormButton = document.getElementById("cancel-form");
+const errorMessage = document.getElementsByClassName("error")[0];
 
 let myShelf = [];
 
 //Book class
-class Book{
-    constructor(title, author, pages, readStatus) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.readStatus = readStatus;
-        this.index;
+class Book {
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+    this.index;
+  }
+
+  render() {
+    let elementDiv = document.createElement("div");
+    elementDiv.classList.add("book");
+
+    let elementInfo = document.createElement("div");
+    elementInfo.classList.add("book-info");
+
+    let elementDetails = document.createElement("div");
+    elementDetails.classList.add("book-details");
+
+    for (let key in this) {
+      if (this.hasOwnProperty(key)) {
+        let newP = document.createElement("p");
+        newP.classList.add(key);
+
+        switch (key) {
+          case "title":
+          case "author":
+            newP.textContent = this[key];
+            elementInfo.appendChild(newP);
+            break;
+          case "pages":
+            newP.textContent = `${this[key]} pages`;
+            elementDetails.appendChild(newP);
+            break;
+          case "readStatus":
+            newP.textContent = this[key] === true ? "finished" : "in progress";
+            elementDetails.appendChild(newP);
+            break;
+        }
+      }
     }
 
-    render() {
-        let elementDiv = document.createElement("div");
-        elementDiv.classList.add("book");
-    
-        let elementInfo = document.createElement("div");
-        elementInfo.classList.add("book-info");
-    
-        let elementDetails = document.createElement("div");
-        elementDetails.classList.add("book-details");
-    
-        for (let key in this) {
-    
-            if ( this.hasOwnProperty(key) ) {
-    
-                let newP = document.createElement("p");
-                newP.classList.add(key);
-    
-                switch(key) {
-                    case "title":
-                    case "author":
-                        newP.textContent = this[key];
-                        elementInfo.appendChild(newP);
-                        break;
-                    case "pages":
-                        newP.textContent = `${this[key]} pages`
-                        elementDetails.appendChild(newP);
-                        break;
-                    case "readStatus":
-                        newP.textContent = (this[key] === true) ? "finished" : "in progress";
-                        elementDetails.appendChild(newP);
-                        break;
-                };
-    
-            };
-    
-        };
-    
-        elementDiv.appendChild(elementInfo);
-        elementDiv.appendChild(elementDetails);
-    
-        //add button to remove book
-        let removeButton = document.createElement("button");
-        removeButton.innerHTML = "<img src=\"./images/trash_can.png\">";
-        removeButton.classList.add("remove-button");
-        removeButton.addEventListener("click", () => removeBookFromShelf(this) );
-        elementDiv.appendChild(removeButton);
-    
-        //add eventlistener to change reading status
-        let readStatus = elementDiv.querySelector(".readStatus");
-        readStatus.addEventListener("click", () => changeBookReadStatus(this) );
-    
-        return elementDiv;
-    }
+    elementDiv.appendChild(elementInfo);
+    elementDiv.appendChild(elementDetails);
 
-    add = () => {
-        myShelf.push(this);
-        this.index = myShelf.indexOf(this);
-    }
+    //add button to remove book
+    let removeButton = document.createElement("button");
+    removeButton.innerHTML = '<img src="./images/trash_can.png">';
+    removeButton.classList.add("remove-button");
+    removeButton.addEventListener("click", () => removeBookFromShelf(this));
+    elementDiv.appendChild(removeButton);
 
-    remove = () => {
-        myShelf = myShelf.filter(book => book !== this);
-    }
+    //add eventlistener to change reading status
+    let readStatus = elementDiv.querySelector(".readStatus");
+    readStatus.addEventListener("click", () => changeBookReadStatus(this));
 
-    changeStatus = () => {
-        this.readStatus = !this.readStatus;
-    }
+    return elementDiv;
+  }
 
-};
+  add = () => {
+    myShelf.push(this);
+    this.index = myShelf.indexOf(this);
+  };
+
+  remove = () => {
+    myShelf = myShelf.filter((book) => book !== this);
+  };
+
+  changeStatus = () => {
+    this.readStatus = !this.readStatus;
+  };
+}
 
 //initialize the page
 function startUp() {
-    if (localStorage.getItem("myShelf")) {
-
-        let tempShelf = Array.from( JSON.parse( window.localStorage.getItem("myShelf") ) );
-        tempShelf.forEach( tempBook => {
-            let newBook = Object.assign(new Book(), tempBook);
-            myShelf.push(newBook);
-        });
-        
-        displayShelf();
-    };
-
-    addNewBookButtons.addEventListener("click", () => toggleFormDisplay() );
-
-    submitFormButton.addEventListener("click", () => {
-
-        if (!form.checkValidity()) {
-            alert("Please enter valid input!")
-        } else {
-            addBookToShelf();
-            toggleFormDisplay();
-            form.reset();
-        };
-
+  if (localStorage.getItem("myShelf")) {
+    let tempShelf = Array.from(
+      JSON.parse(window.localStorage.getItem("myShelf"))
+    );
+    tempShelf.forEach((tempBook) => {
+      let newBook = Object.assign(new Book(), tempBook);
+      myShelf.push(newBook);
     });
 
-    cancelFormButton.addEventListener("click", () => {
-        toggleFormDisplay()
-        form.reset();
-    });
+    displayShelf();
+  }
+
+  addNewBookButtons.addEventListener("click", () => toggleFormDisplay());
+
+  form.addEventListener("submit", (e) => {
+    if (!form.checkValidity()) {
+      showError();
+      e.preventDefault();
+    } else {
+      addBookToShelf();
+      toggleFormDisplay();
+      form.reset();
+      errorMessage.textContent = "";
+      errorMessage.classList.remove("error-active");
+    }
+  });
+
+  cancelFormButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleFormDisplay();
+    form.reset();
+  });
+}
+
+function showError() {
+  if (newTitle.validity.valueMissing) {
+    errorMessage.textContent = "Please enter a book title!";
+  } else if (newAuthor.validity.valueMissing) {
+    errorMessage.textContent = "Please enter the book's author!";
+  } else if (!newPages.validity.valid) {
+    errorMessage.textContent = "Please enter a valid page number!";
+  }
+  errorMessage.classList.add("error-active");
 }
 
 function displayShelf() {
-    let currentShelf = Array.from( document.getElementsByClassName("book") );
-    currentShelf.forEach(element => {
-        element.parentNode.removeChild(element);
-    });
+  let currentShelf = Array.from(document.getElementsByClassName("book"));
+  currentShelf.forEach((element) => {
+    element.parentNode.removeChild(element);
+  });
 
-    myShelf.forEach(book => {
-        shelf.appendChild( book.render() );
-    });
+  myShelf.forEach((book) => {
+    shelf.appendChild(book.render());
+  });
 }
 
 function changeBookReadStatus(book) {
-    book.changeStatus();
-    updateLocalStorage();
-    displayShelf();
+  book.changeStatus();
+  updateLocalStorage();
+  displayShelf();
 }
 
 function removeBookFromShelf(book) {
-    book.remove();
-    updateLocalStorage();
-    displayShelf();
+  book.remove();
+  updateLocalStorage();
+  displayShelf();
 }
 
 function addBookToShelf() {
-    let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, newReadStatus.checked);
-    newBook.add();
-    updateLocalStorage();
-    displayShelf();
+  let newBook = new Book(
+    newTitle.value,
+    newAuthor.value,
+    newPages.value,
+    newReadStatus.checked
+  );
+  newBook.add();
+  updateLocalStorage();
+  displayShelf();
 }
 
 function toggleFormDisplay() {
-    form.classList.toggle("hide-form");
-    form.classList.toggle("show-form");
+  form.classList.toggle("hide-form");
+  form.classList.toggle("show-form");
 }
 
 function updateLocalStorage() {
-    localStorage.setItem("myShelf", JSON.stringify(myShelf));
+  localStorage.setItem("myShelf", JSON.stringify(myShelf));
 }
 
 startUp();
